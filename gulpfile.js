@@ -53,6 +53,7 @@ gulp.task("copy-assets", () => {
 
 gulp.task("watch", () => {
     browsersync.init({
+      comment:"see vor incarca toate fileuri cu extensia html",
         server: {
             baseDir: "./dist/",
             serveStaticOptions: {
