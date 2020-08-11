@@ -2,7 +2,9 @@
 export default class Slider {
     //page-blocul de baza unde is slideurile
     //btns-butoanele de manipulare a sliderului
-    constructor(page, btns) {
+    //transmitem obiectul default el este gol
+    //destructurizam obiectul in difereite variabile
+    constructor({page="",btns="",next="",prev=""}={}) {
         this.page = document.querySelector(page);
         this.slides = this.page.children;
         this.btns = document.querySelectorAll(btns);
