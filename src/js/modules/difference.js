@@ -1,7 +1,7 @@
-
 //afisam optiunile din fiecare coloana cate una apasand pe buton
-export default class Difference{
-    constructor(oldOfficer,newOfficer,items)
+export default class Difference {
+    constructor(oldOfficer, newOfficer, items) {
+    try
     {
         this.oldOfficer = document.querySelector(oldOfficer);
         this.newOfficer = document.querySelector(newOfficer);
@@ -9,6 +9,7 @@ export default class Difference{
         this.newItems = this.newOfficer.querySelectorAll(items);
         this.oldCounter = 0;
         this.newCounter = 0;
+    }catch(e){}
     }
 
     bindTriggers(container, items, counter) {
@@ -34,14 +35,18 @@ export default class Difference{
         });
     }
 
-    init()
-    {
+    init() {
+       try
+       {
         this.hideItems(this.oldItems);
         this.hideItems(this.newItems);
 
-        
+
         this.bindTriggers(this.oldOfficer, this.oldItems, this.oldCounter);
         this.bindTriggers(this.newOfficer, this.newItems, this.newCounter);
 
+       }catch(e){
+
+       }
     }
 }
