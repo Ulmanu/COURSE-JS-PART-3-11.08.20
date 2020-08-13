@@ -40,8 +40,9 @@ export default class MainSlider extends Slider {
         this.showSlides(this.slideIndex += n);
     }
 
-    render() {
-        try {
+    bindTriggers()
+    {
+        if(this.container){
             this.hanson = document.querySelector('.hanson');
             this.btns.forEach(item => {
                 item.addEventListener('click', () => {
@@ -56,9 +57,41 @@ export default class MainSlider extends Slider {
                 });
     
             });
-    
-            this.showSlides(this.slideIndex);
-        } catch (e) {
+            
+            document.querySelectorAll('.prevmodule').forEach(item=>
+                {
+                    item.addEventListener('click',(e)=>
+                    {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        this.plusSlides(-1);
+                    });
+                });
+            
+            
+                document.querySelectorAll('.nextmodule').forEach(item=>
+                    {
+                        //bug din cauza ca nextmodule ii in next si iesa ca se apasa de 2 ori
+                        item.addEventListener('click',(e)=>
+                        {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            this.plusSlides(1);
+                        });
+                    });
+                }
+    }
+
+    render() {
+        try {
+        
+        
+                this.showSlides(this.slideIndex);
+                this.bindTriggers();
+
+            }
+           
+         catch (e) {
 
         }
 

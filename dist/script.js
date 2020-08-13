@@ -5030,6 +5030,11 @@ window.addEventListener('DOMContentLoaded', function () {
     container: '.page'
   });
   slider.render();
+  var modulePageSlider = new _modules_slider_slider_main__WEBPACK_IMPORTED_MODULE_2__["default"]({
+    container: '.moduleapp',
+    btns: '.next'
+  });
+  modulePageSlider.render();
   var showUpSlider = new _modules_slider_slider_mini__WEBPACK_IMPORTED_MODULE_1__["default"]({
     container: '.showup__content-slider',
     prev: '.showup__prev',
@@ -5564,11 +5569,11 @@ function (_Slider) {
       this.showSlides(this.slideIndex += n);
     }
   }, {
-    key: "render",
-    value: function render() {
+    key: "bindTriggers",
+    value: function bindTriggers() {
       var _this2 = this;
 
-      try {
+      if (this.container) {
         this.hanson = document.querySelector('.hanson');
         this.btns.forEach(function (item) {
           item.addEventListener('click', function () {
@@ -5581,7 +5586,31 @@ function (_Slider) {
             _this2.showSlides(_this2.slideIndex);
           });
         });
+        document.querySelectorAll('.prevmodule').forEach(function (item) {
+          item.addEventListener('click', function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+
+            _this2.plusSlides(-1);
+          });
+        });
+        document.querySelectorAll('.nextmodule').forEach(function (item) {
+          //bug din cauza ca nextmodule ii in next si iesa ca se apasa de 2 ori
+          item.addEventListener('click', function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+
+            _this2.plusSlides(1);
+          });
+        });
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      try {
         this.showSlides(this.slideIndex);
+        this.bindTriggers();
       } catch (e) {}
     }
   }]);
